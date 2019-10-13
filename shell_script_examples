@@ -872,7 +872,7 @@ for i in 192.168.56.75
 do
   df=`ssh $i "df -Pl"`
   echo "$df"
-  mount_val=`echo "$df" | awk '/^\/dev/{sub(/%/,"",$5); print $5}'`
+  mount_val=`echo "$df" | awk '/^\/dev/{sub(/%/,"",$5); print $5}' | awk '{sum+=$1} END{printf("%d\n",sum)}'`
   echo "Current Volume Size - " $mount_val
   if [ $mount_val -gt 95 ]
   then
