@@ -1,9 +1,9 @@
 #!/bin/bash
 # If the ec2 instances file exists, remove it
-if [ -f ec2-instances.out ];
-then
-  rm -f ec2-instances.out
-fi
+#if [ -f ec2-instances.out ];
+#then
+#  rm -f ec2-instances.out
+#fi
 
 #List Instances In Each Region.
 for region in $(aws ec2 describe-regions --output text | cut -f4)
