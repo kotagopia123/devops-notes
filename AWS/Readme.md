@@ -1,5 +1,7 @@
 ## RNS Public AMI:
 
+This is the custom 
+
 ### Choose a region (N.Virginia)
 
 ### Choose a service called as EC2 and then Click on AMI's and search AMI.
