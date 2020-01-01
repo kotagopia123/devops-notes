@@ -9,7 +9,7 @@ This is the custom AMI from RNS. Use this AMI and launch the instance with below
 > [**RNS AMI Image**](https://console.aws.amazon.com/ec2/home?region=us-east-1#Images:visibility=public-images;ownerAlias=978735513005;sort=name) 
 
 ```bash
-**UserName:** root
+UserName: root
 
 Password: Rnstech@123
 ```
