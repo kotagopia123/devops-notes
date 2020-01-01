@@ -2,7 +2,7 @@
 
 This is the custom AMI from RNS. Use this AMI and launch the instance with below mentioned UserName and Password.
 
-> Step 1:  Choose a region (N.Virginia)
+>   Choose a region (N.Virginia)
 
 > Step 2: Choose a service called as EC2 and then Click on AMI's and search AMI.
 
