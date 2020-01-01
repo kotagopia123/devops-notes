@@ -1,6 +1,6 @@
 ## RNS Public AMI:
 
-This is the custom AMI from RNS. Use this AMI and launch the instance with below mentioned U
+This is the custom AMI from RNS. Use this AMI and launch the instance with below mentioned UserName and Password.
 
 ### Choose a region (N.Virginia)
 
