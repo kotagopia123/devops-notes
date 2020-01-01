@@ -6,9 +6,9 @@
 
 [RNS AMI Image](https://console.aws.amazon.com/ec2/home?region=us-east-1#Images:visibility=public-images;ownerAlias=978735513005;sort=name)
 
-`UserName:` root
+```UserName: root
 
-`Password:` Rnstech@123
+`Password: Rnstech@123
 
 
 ===========================================================================================================================
