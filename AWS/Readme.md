@@ -1,6 +1,6 @@
 ## RNS Public AMI:
 
-This is the custom 
+This is the custom AMI from RNS. Use this 
 
 ### Choose a region (N.Virginia)
 
