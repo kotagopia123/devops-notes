@@ -1,6 +1,6 @@
 ## RNS Public AMI:
 
-This is the custom AMI from RNS. Use this 
+This is the custom AMI from RNS. Use this AMI and launch the instance witho
 
 ### Choose a region (N.Virginia)
 
