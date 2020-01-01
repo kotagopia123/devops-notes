@@ -9,6 +9,7 @@ https://console.aws.amazon.com/ec2/home?region=us-east-1#Images:visibility=publi
 
 
 UserName: root
+
 Password: Rnstech@123
 
 
