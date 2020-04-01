@@ -1,0 +1,89 @@
+Java:
+	S/W: JRE and JDK
+	JRE: JVM (Running The Prog, We can't compile)
+	JDK: Compiler and JVM 
+	JDK - 1.8
+
+	sudo yum search java
+    sudo yum install java-1.8.0-openjdk-devel.x86_64 -y
+    java -version
+
+Maven:
+
+	wget http://apachemirror.wuchna.com/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+   12  sudo wget http://apachemirror.wuchna.com/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+   13  ll
+   15  sudo tar -xzvf apache-maven-3.6.3-bin.tar.gz
+   16  ll
+   17  sudo rm -rf apache-maven-3.6.3-bin.tar.gz
+   18  ll
+   19  sudo mv apache-maven-3.6.3/ maven3
+
+   set PATH
+   	export PATH=/opt/maven3/bin:$PATH
+
+   	echo $PATH
+   43  export PATH=/opt/maven3/bin:$PATH
+   44  echo $PATH
+   45  mvn --version
+   46  exit
+   47  mvn --version
+   48  cd
+   49  ll -al
+   50  vi .bashrc
+   51  source .bashrc
+   52  mvn --version
+   53  exit
+   54  mvn --version
+   55  cat ~/.bashrc
+   56  which java
+   57  echo $PATH
+   58  mvn --version
+
+
+Storages:
+	- DB
+		Backup & Recovery
+	- File
+		xml
+
+	DB:
+		Table (Set of Records)
+		Record (Row) - Set of Properties
+		Column - Name and Value
+
+	File (.xml)
+		Attribute - Name and Value
+		Element - set of Attributes or sub element
+		Root Element -
+
+		<Employees>
+			<Employee>
+				<id>1</id>
+				<name>x</name>
+				<sal>2Lacks</sal>
+				<Address>
+					<l1></l1>
+					<l2></l2>
+					<city></city>
+					<zip></zip>
+				</Address>
+			</Employee>
+			<Employee>
+				<id>2</id>
+				<name>y</name>
+				<sal>3Lacks</sal>
+				<Address>
+					<l1>line1</l1>
+					<l2/>
+					<city/>
+					<zip>111111</zip>
+				</Address>
+			</Employee> 
+		</Employees>
+
+		<!-- comment -->
+		Empty Data:
+
+	Prog:
+		Variable - Name and Value
