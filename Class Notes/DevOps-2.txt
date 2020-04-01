@@ -1,0 +1,33 @@
+Java Editions:
+	- J2SE (Standard Edition) (.jar)
+		- Applet, Swing, Thread, intranet
+	- J2EE
+		- Enterprise Applications - .ear
+			- Web Application - .war
+				- html
+				- images
+				- css
+				- js
+				- pdf
+				- .xml
+			- Business Layer  - .jar
+				- .java/.class
+				- *.xml	
+	- J2ME
+		- Mobile Edition
+
+JVM
+	.jar
+
+Servers (Web / App Servers)
+	.war
+	.ear
+
+Project
+	- src
+		|- source files (.java/.xml)
+	- target
+		|- binary files (.class/.war/.jar)
+
+Packaging (Build)
+	- Src(.java) -> compile (class files) -> Packaged (.war/.jar)
