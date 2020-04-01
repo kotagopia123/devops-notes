@@ -1,0 +1,60 @@
+- Waterfall Approach
+	- 
+- Agile Process (Requirement Process)
+	- Scrum Meetings
+	- Sprints (Length of iteration)
+
+- Comm gaps bet Dev-Test-Operational Teams (Release Process)
+	- Different Env
+		Dev -> Staging -> Load Testing -> UAT -> Prod
+	- Change Management(Infra/Platform/App)
+	- 
+- DevOps
+	- CI and CD
+	- Continuos Integration (Integration (Source Code Repo))
+		- Code Coverage Metrics (Standards)
+			- Sonar Qube / Cobertura
+		- Unit Test Cases (TDD)
+			- Junit Test
+		- Build the Articats
+			- Maven
+		- Deploy the Artifact to Staging/Integration Env
+			- Web Servers / App Servers
+				Apache/Nginx/Tomcat
+		- Functional/Non Functional Test Cases
+	- Continuous Delivery/Deployment
+		- Deployment 
+			- Complete automated process
+		- Delivery
+			- Manual approach
+
+Code Coverage:
+	Sonar Qube
+Test Cases:
+	Junit
+Build Tool:
+	Maven
+Servers:
+	Apache and Tomcat
+Artifactory Repo:
+	Nexus
+Source Code:
+	Git/Git Hub/ Git Lab
+CI Server:
+	Jenkins
+Infra:	
+	AWS
+Platform:
+	Linux (Centos/Ubuntu)
+CM Tools:
+	Ansible
+Container:
+	Docker
+	Docker Compose
+	K8s
+ITIL Process
+	Jira
+Monitoring Tool:
+	Nagios
+Scripting:
+	Shell Scripting
