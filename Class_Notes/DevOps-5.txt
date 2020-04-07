@@ -1,0 +1,41 @@
+Maven Archetype
+Project Folder
+	srcmain/java - Src code
+	src/test/java - Test Cases
+	pom.xml
+	target
+		surefire-reports
+		.jar
+Maven Phases:
+	mvn clean package
+	Clean:
+		clean
+			- Deleting target folder
+	Default:
+		compile
+			- compile all the java files src/main/java
+			- copying those class files to target/classes folder
+		testcompile
+			- compile all the java files src/test/java
+			- copying those class files to target/test-classes folder
+		test
+		package - create a jar file in the target folder(.jar)
+		install - Distribute artifact file to the Local Repo
+		deploy - Distribute artifact file to the Remote Repo
+
+Maven Repo:
+	Central Repo:
+		- managed by Maven
+		- Internet dependency
+
+	Local Repo:
+		- ~/.m2/repository
+		- install phase
+	Remote Repo: (Nexus)
+		- deploy phase
+
+		Scopes:
+			- Developer's Copy
+			- Release Copy
+
+
