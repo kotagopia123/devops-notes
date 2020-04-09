@@ -1,0 +1,74 @@
+App Server: Tomcat
+	- Installation
+	- Start/Stop
+	- Config
+	- Log
+	- Deploy/redeploy/undeploy
+
+Tomcat Start/Stop:
+	TOMCAT_HOME/bin
+		- ./startup.sh
+		- ./shutdown.sh
+
+	Verify:
+		- Checking Port
+			- netstat -nltp
+		- URL
+			- http://ip:port
+			- 
+	SoftLinks:
+		- sudo ln -s /opt/tomcat8/bin/startup.sh /usr/local/bin/tomcatup
+	  	-  sudo ln -s /opt/tomcat8/bin/shutdown.sh /usr/local/bin/tomcatdown
+	  	- ls -l /usr/local/bin
+
+	- Configuration:
+
+		- Disable Restriction to access the 'manager' App
+			- TOMCAT_HOME/webapps/manager/META-INF/context.xml
+
+		- Add user and Role
+			- TOMCAT_HOME/conf/tomcat-users.xml
+
+		- How to configure Http custom Port
+		  How to configure Https port
+		  How to customize the App Deployment Dir
+		  	- TOMCAT_HOME/conf/server.xml
+
+	- Application Management:
+		- Deploy
+			- Hot Deployment:
+				- Large Size App
+				- Automation
+				- copy the app (.war) to the TOMCAT_HOME/webapps
+			- Console Deployment:
+				- Manual
+				- Small size
+				- URL of tomcat server 
+		- Redeploy
+		- UnDeploy
+		- Starting
+		- Stoping
+
+Logs: TOMCAT_HOME/logs/
+	- Access
+		- IP Address
+		- Date & Time 
+		- localhost_access_log.2020-04-09.txt
+	- Txn Logs
+		- tracing all the server trxn 
+		- catalina.out
+		- Trxn:
+			Date & Time Type Module Txn
+
+			Type of Log Level:
+				- INFO
+				- Notice
+				- Warning
+				- Error
+				- Critical
+				- Alert
+				- Emergency
+
+
+
+

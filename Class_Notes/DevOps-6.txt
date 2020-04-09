@@ -1,0 +1,61 @@
+Developer's copy:
+	- 1.0
+		- 10:00 am
+		- 1:00 pm
+		- 2:00 pm
+	- 1.0.1
+		- 10:00
+		- 11:00
+Release:
+	- 1.0
+	- 1.0.1
+
+Artifactory Repo: (Nexus)
+	- Policies
+		- snapshot
+			Developer's copy
+				- 1.0
+					- 10:00 am
+					- 1:00 pm
+					- 2:00 pm
+			Maven pom.xml:
+				<version>1.0-SNAPSHOT</version>
+		- release
+			Release
+				- 1.0
+			Maven pom.xml:
+				<version>1.0</version>
+
+Web/App Server:
+	Types Servers:
+		- Web Static App
+			- Never changes
+			- http/https
+			- Host on Web Server (Apache/Nginx/)
+		- Web Dynamic App
+			- Traxn
+			- http/https/RMI/SMTP
+			- Host on App Server (Tomcat/WebLogic/Websphere)
+
+App Server: Tomcat
+	- Installation
+	- Start/Stop
+	- Config
+	- Log
+	- Deploy/redeploy/undeploy
+
+Tomcat Installation:
+	- Install Java
+	- Download Tar ball
+	- Extract it and rename it
+
+Tomcat Directory:
+	- bin (Executables)
+	- lib (Supported Libs)
+	- logs (Trxns)
+	- conf (Configuration)
+
+
+
+Nexus Server
+Maven Integration with Nexus
