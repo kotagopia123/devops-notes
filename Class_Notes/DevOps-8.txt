@@ -1,0 +1,48 @@
+Nexus Server:
+	- Launching/Installing
+		- .war file
+		- Check Deployment Status:
+			- TOMCAT_HOME/logs
+			- tail -f catalina.out
+		- Deploy to Nexus Server
+			- IP
+			- Port
+			- Un/PWD
+				- admin/admin123
+	- Artifacts Management:
+		- Snapshot
+			- http://ec2-34-226-219-165.compute-1.amazonaws.com:8080/nexus/content/repositories/snapshots/
+		- Release
+			- http://ec2-34-226-219-165.compute-1.amazonaws.com:8080/nexus/content/repositories/releases/
+
+Integrate Maven  with Nexus Repo URLs:
+	- Add the Distribution Management Element in pom.xml	
+
+		<distributionManagement>
+			
+			<snapshotRepository>
+				<id>deployment</id>
+      			<name>my snapshot repository</name>
+      			<url>http://ec2-34-226-219-165.compute-1.amazonaws.com:8080/nexus/content/repositories/snapshots/</url>
+			</snapshotRepository>
+
+			<repository>
+				<id>deployment</id>
+				<name>My Release Repository</name>
+				<url>http://ec2-34-226-219-165.compute-1.amazonaws.com:8080/nexus/content/repositories/releases/</url>
+			</repository>
+
+		</distributionManagement>
+
+	- Add the credentials of Nexus in settings.xml file of the Maven
+
+			<server>
+				<id>deployment</id>
+				<username>admin</username>
+      			<password>admin123</password>
+			</server>
+
+	- pom.xml
+		<version>1.0</version>
+
+	- mvn clean deploy
