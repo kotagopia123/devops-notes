@@ -1,0 +1,45 @@
+- Directory Structure
+	- Feature
+	- Development
+	- Release
+	- Master
+
+Sequential:
+	Before Release:
+		- Current branch has to start with master branch
+		- Current Branch can be used as Release Branch		
+
+	After Release:
+		- Release branch required to merge with master branch
+
+	Hot Fixes:
+		Before Release:
+			- Hot fix branch has to start with Master Branch
+			- The same can be used for Release also
+		After Release:
+			- Hot fix branch merge with master
+			- Hot fix required to merge with current Dev/Release branch
+			- Hot fix tagging 
+
+Parallel:
+	Before Release:
+		- Release branch required to merge with Master
+
+Creating Branch:
+	- SRC -> DEST
+		$ git checkout SRC
+		$ git branch DEST
+
+Merging Branch
+	- SRC -> DEST
+		$ git checkout DEST
+		$ git merge SRC
+
+Before Release:
+	Merging:
+		master -> Release
+
+After Release:
+	Merging:
+		Release -> master
+

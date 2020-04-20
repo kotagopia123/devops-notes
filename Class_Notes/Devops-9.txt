@@ -1,0 +1,20 @@
+Git on Win: (Git Bash)
+	- Run Linux commands
+	- SSH client
+	- Git commands
+
+Linux/Unix:
+	- yum install -y git
+
+Verify the Git:
+	- git version
+	- which git
+
+Config Author and Email:
+	- git config --global --list
+	- git config --global user.name rnstech
+	- git config --global user.email rnstech@gmail.com
+
+How to create a Local Repo:
+	- git init
+
