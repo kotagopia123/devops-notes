@@ -1,0 +1,151 @@
+Playbook: Yaml
+
+	- hosts: stagingAppServer
+	- become: yes
+var:
+	pkgName: tomcat	
+Tasks:
+	- yum
+	  - name: {{pkgName}}
+	    state: latest
+	   notify: tomcat
+	- yum
+	  - name: httpd
+	    state: latest
+	   notify: httpd
+	- copy:
+		src: server.xml
+		dest: TOMCAT_HOME/conf
+		notify: tomcat
+	- copy:
+		src: webapp.war
+		dest: TOMCAT_HOME/webapps
+		notify: tomcat
+handlers:
+	- service
+	  - name: tomcat
+	    state: restarted
+	- service
+	  - name: httpd
+	    state: restarted
+
+https://youtu.be/gaWHf80EEY8
+
+https://youtu.be/NoLieDJZ1ug
+
+Playbook:
+	Declaration
+	vars
+	tasks
+	handlers
+
+Apache:
+	tasks
+	files 
+	vars
+	handlers
+	templates
+
+Ansible Roles:
+	Apache:
+		tasks
+			main.yaml
+		files 
+			start.sh
+		vars
+			main.yaml
+		handlers
+			main.yaml
+		templates
+			httpd.conf
+	tomcat:
+		tasks
+			main.yaml
+		files 
+			start.sh
+		vars
+			main.yaml
+		handlers
+			main.yaml
+		templates
+			httpd.conf
+	mysql:
+		tasks
+			main.yaml
+		files 
+			start.sh
+		vars
+			main.yaml
+		handlers
+			main.yaml
+		templates
+			httpd.conf
+
+app.yaml
+	- hosts: 
+	  become:
+	  roles:
+	  	- tomcat
+	  	- mysql
+
+install-apache
+
+Php:
+	- php libraries
+	- apache 
+
+Java Installation
+Tomcat Install
+
+	
+Start/Stop
+Config:
+	- tomcat-users.xml
+	- server.xml 8080 - 8090
+Deploy:
+	- webapps
+
+
+vars:
+	- http_port: 8090
+	- https_port: 8090
+	- admin_user: tomcat
+	- admin_pass: welcome
+	- tomcat_url:
+
+Tasks:
+	- create user
+	- create Group
+	- Install Java
+	- Download tomcat_url
+	- Extract it tar /opt/apache-tomcat
+	- copy Template server.xml to the /opt/apache-tomcat/conf
+		notify service
+	- copy Template tomcat-users.xml to the /opt/apache-tomcat/conf
+		notify service
+	- copy .war /opt/apache-tomcat/webapps
+		notify service
+
+Handler:
+	- restart service
+
+templates:
+	- server.xml
+	- tomcat-users.xml
+
+files:
+	- tomcat_service.sh (tomcat)
+		start
+			TOMCAT_HOME/bin/startup.sh
+		stop
+			TOMCAT_HOME/bin/shutdown.sh
+		status
+			pid
+		restart
+			TOMCAT_HOME/bin/shutdown.sh
+			TOMCAT_HOME/bin/startup.sh
+
+
+
+
+	

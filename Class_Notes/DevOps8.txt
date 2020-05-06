@@ -1,0 +1,27 @@
+Remote Repo:
+	- Git Server(VM)
+	- Git Hub (MS)
+	- GitLab (git lab)
+	- Bit Bucket (Atlassian)
+
+GitHub:
+	- Subscribe Account
+	- Create Repo
+	- Uploaded Local Repo to Remote Repo
+		- git remote add
+		- git status
+		- git add
+		- git commit
+		- git push
+		- git clone
+		- git pull 
+		- git init --bare
+
+	- git reset
+	- git checkout file
+	- git blame
+	- git rm
+	- git branch
+	- git mergetool
+	- git log
+	- 
