@@ -508,49 +508,78 @@ esac
 #===================
 
 #!/bin/bash
-
-for COLOR in red green blue
+for i in 1 2 3 4 5
 do
-  echo "COLOR: $COLOR"
+  echo "Welcome $i times."
 done
 -----------------------------------------------------
+
 #!/bin/bash
-
-COLORS="red green blue"
-
-for COLOR in $COLORS
-do
-  echo "COLOR: $COLOR"
+# A simple shell script to print list of cars
+for car in bmw ford toyota nissan
+   do
+   echo "Value of car is: $car"
 done
+
 ------------------------------------------------------
-# for loop with Wild Cards:
-#==============
 
 #!/bin/bash
-
-cd /tmp
-for FILE in *.html
-do
-    echo "Copying $FILE"
-    cp $FILE /var/www-just-html/$FILE
+# A simple shell script to run commands 
+for command in date pwd df 
+   do
+   echo
+   echo "*** The output of $command command >"
+   #run command 
+   $command
+   echo
 done
+
+------------------------------------------------------
+
+#!/bin/bash
+# The For Loop Using Variable's Contents
+# A shell script to verify user password database
+files="/etc/passwd /etc/group /etc/shadow /etc/gshdow"
+for f in $files
+do
+	[  -f $f ] && echo "$f file found" || echo "*** Error - $f file missing."
+done
+
+------------------------------------------------------
+
+#!/bin/bash
+# The For Loop Using Command-line Arguments
+# A simple shell script to display a file on screen passed as command line argument
+[ $# -eq 0 ] && { echo "Usage: $0 file1 file2 fileN"; exit 1; }
+
+# read all command line arguments via the for loop
+for f in $*
+   do
+   echo
+   echo "< $f >"
+   [ -f $f ] && cat $f || echo "$f not file."
+   echo "------------------------------------------------"
+done
+
 --------------------------------------------------------
-#!/bin/bash
 
-for FILE in /tmp/*.html
-do
-    echo "Copying $FILE"
-    cp $FILE /var/www-just-html
-done
--------------------------------------------------------
 #!/bin/bash
+# Multiplication Table
+n=$1
+# make sure command line arguments are passed to the script
+if [ $# -eq 0 ]
+then
+	echo "A shell script to print multiplication table."
+	echo "Usage : $0 number"
+	exit 1
+fi
 
-# This will loop through all the "html" files in the current directroy.
-for FILE in *.html
+# Use for loop
+for i in {1..10}
 do
-    echo "Copying $FILE"
-    cp $FILE /var/www-just-html
+	echo "$n * $i = $(( $i * $n))"
 done
+
 --------------------------------------------------------
 
 # Loop Types - while:
