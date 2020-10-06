@@ -586,6 +586,60 @@ done
 #=====================
 
 #!/bin/bash
+# set n to 1
+n=1
+
+# continue until $n equals 5
+while [ $n -le 5 ]
+do
+	echo "Welcome $n times."
+	n=$(( n+1 ))	 # increments $n
+done
+
+-------------------------------------------------------
+
+#!/bin/bash
+n=1
+while (( $n <= 5 ))
+do
+	echo "Welcome $n times."
+	n=$(( n+1 ))	
+done
+
+------------------------------------------------------
+
+#!/bin/bash
+file=/etc/resolv.conf
+while IFS= read -r line
+do
+        # echo line is stored in $line
+	echo $line
+done < "$file"
+
+-------------------------------------------------------
+
+#!/bin/bash
+file=/etc/resolv.conf
+# set field separator to a single white space 
+while IFS=' ' read -r f1 f2
+do
+	echo "field # 1 : $f1 ==> field #2 : $f2"
+done < "$file"
+
+-------------------------------------------------------
+
+#!/bin/bash
+file=/etc/passwd
+# set field delimiter to : 
+# read all 7 fields into 7 vars 
+while IFS=: read -r user enpass uid gid desc home shell
+do
+    # only display if UID >= 500 
+	[ $uid -ge 500 ] && echo "User $user ($uid) assigned \"$home\" home directory with $shell shell."
+done < "$file"
+
+------------------------------------------------------
+#!/bin/bash
 
 INDEX=1
 while [ $INDEX -lt 6 ]
@@ -613,25 +667,6 @@ done
 
 echo "Google down."
 ---------------------------------------------------
-
-#!/bin/bash
-
-LINE_NUM=1
-while read LINE
-do
-  echo "${LINE_NUM}: ${LINE}"  
-  ((LINE_NUM++))
-done < /etc/passwd
-
-----------------------------------------------------
-
-#!/bin/bash
-
-grep vagrant /etc/passwd | while read LINE
-do
-  echo "User: ${LINE}"
-done
-----------------------------------------------------
 
 #!/bin/bash
 
