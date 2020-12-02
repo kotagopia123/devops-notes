@@ -1,0 +1,213 @@
+Set Host Name:
+  $ sudo hostnamectl set-hostname build-server
+
+Install Java:
+  $ java -version
+  $ sudo yum search jdk
+  $ sudo yum install -y java-1.8.0-openjdk-devel.x86_64
+  $ java -version
+
+Install Maven:
+  $ wget https://mirrors.estointernet.in/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+  $ sudo cp apache-maven-3.6.3-bin.tar.gz /opt/
+  $ cd /opt/
+  $ sudo tar -xzvf apache-maven-3.6.3-bin.tar.gz
+  $ sudo rm -rf apache-maven-3.6.3-bin.tar.gz
+  $ ll
+  $ sudo mv apache-maven-3.6.3/ maven3
+  $ ll maven3/
+  $ sudo chown centos:centos maven3/
+  $ mvn --version
+
+Set Path:
+  $ cd 
+  $ vi ~/.bashrc
+    export PATH=/opt/maven3/bin:$PATH
+  $ source ~/.bashrc
+  $ mvn --version
+
+Create Project:
+  $ cd /opt/
+  $ sudo mkdir projects
+  $ sudo chown centos:centos projects
+  $ cd projects/
+  $ mvn archetype:generate -DgroupId=com.rns.app -DartifactId=maven-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+  $ ll
+  $ cd maven-app/
+  $ tree
+  $ sudo yum install -y tree
+  $ tree
+
+Browse Project Files:
+  $cd /opt/projects/
+  $ ll
+  $ tree
+  $ cd maven-app/
+  $ cat pom.xml
+  $ tree
+  
+Build Project:
+  $ mvn clean package
+  $ ll
+  $ ll target/
+  $ ll target/surefire-reports/
+  $ tree target/
+  $ mvn clean package
+
+  $ mvn clean
+  $ mvn package
+  $ mvn clean test
+
+  $ ll target/
+  $ mvn clean compile
+
+  $ vi pom.xml
+  $ mvn clean package
+
+Local Repository:
+  $ ll ~/.m2/repository/
+  $ cat pom.xml
+  $ ll ~/.m2/repository/junit/
+  $ ll ~/.m2/repository/junit/junit/
+  $ ll ~/.m2/repository/junit/junit/3.8.1/
+
+Uploading to Local Repo:
+  $ mvn clean install
+  $ ll ~/.m2/repository/
+  $ ll ~/.m2/repository/com
+  $ ll ~/.m2/repository/com/rns/
+  $ ll ~/.m2/repository/com/rns/app/
+  $ ll ~/.m2/repository/com/rns/app/maven-app/
+  $ ll ~/.m2/repository/com/rns/app/maven-app/1.0/
+
+
+Maven Configuration File:
+  $ cd /opt/maven3/
+  $ ll
+  $ ll conf/
+  $ vi conf/settings.xml
+  $ ll ~/.m2/repository/
+  $ cd ../projects/maven-app/
+  $ ll
+  $ cat pom.xml
+
+
+Tomcat Installation:
+  $ java -version
+  $ cd /opt/
+  $ ll
+  $ sudo wget https://mirrors.estointernet.in/apache/tomcat/tomcat-9/v9.0.40/bin/apache-tomcat-9.0.40.tar.gz
+  $ ll
+  $ sudo tar -xzvf apache-tomcat-9.0.40.tar.gz
+  $ ll
+  $ sudo rm -rf apache-tomcat-9.0.40.tar.gz
+  $ ll
+  $ sudo mv apache-tomcat-9.0.40/ webserver
+  $ ll
+  $ sudo chown -R centos:centos webserver/
+  $ ll webserver/
+
+Check the Version of Tomcat:
+  $ cd webserver/bin/
+  $ ll
+  $ ./version.sh
+
+Start/Stop the Tomcat:
+  $ ./startup.sh
+  $ ps -ef | grep tomcat
+  $ netstat -nltp
+  # Using URL
+  $ ./shutdown.sh
+  $ netstat -nltp
+  $ ps -ef | grep tomcat
+  $ pwd
+
+Create Soft Links:
+  $ sudo ln -s /opt/webserver/bin/startup.sh /usr/local/bin/startTomcat
+  $ ll /usr/local/bin/
+  $ sudo ln -s /opt/webserver/bin/shutdown.sh /usr/local/bin/stopTomcat
+  $ ll /usr/local/bin/
+  $ cd ../..
+  $ startTomcat
+  $ netstat -nltp
+  $ exit
+  $ stopTomcat
+  $ startTomcat
+
+
+Configure the Tomcat:
+  $ cd /opt/webserver/
+  $ ll
+  $ cd webapps/
+  $ ll
+  $ ll ROOT/
+  $ ll
+  $ cd manager/
+  $ ll
+  $ cd META-INF/
+  $ ll
+  $ vi context.xml
+  $ pwd
+  $ cd ../../..
+  $ ll
+  $ cd conf/
+  $ ll
+  $ vi tomcat-users.xml
+  $ stopTomcat
+  $ startTomcat
+  $ cd ../webapps/
+  $ ll
+  $ cd ../../
+
+Create Web Application:
+  $ cd projects/
+  $ ll
+  $ mvn archetype:generate -DgroupId=com.rns.simpleweb -DartifactId=webapp -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+  $ ll
+  $ cd webapp/
+  $ ll
+  $ tree
+  $ cat src/main/webapp/index.jsp
+  $ cat pom.xml
+  $ mvn clean package
+  $ ll target/
+
+Deploy the Webapp:
+  $ cp target/webapp.war /opt/webserver/webapps/
+  $ cd /opt/webserver/conf/
+  $ ll
+  $ vi server.xml
+  $ netstat -nltp
+  $ cd ../logs/
+  $ cd ..
+  $ ll webapps/
+
+Cache Dir of Tomcat:
+  $ ll temp/
+  $ ll webapps/webapp
+  188  ll work/
+  189  ll work/Catalina/
+  190  ll work/Catalina/localhost/
+  191  ll work/Catalina/localhost/webapp/
+
+
+Tomcat Server Logs:
+  $ startTomcat
+  $ cd /opt/webserver/logs
+  $ ll
+  $ tail -f localhost_access_log.2020-12-02.txt
+  $ tail -f catalina.out
+
+Download Nexus and Deploy to Server:
+  $ cd /tmp/
+  $ wget http://www.sonatype.org/downloads/nexus-latest.war
+  $ ll
+  $ cp nexus-latest.war /opt/webserver/webapps/
+  $ cd -
+  $ tail -f catalina.out
+  $ ll ../webapps/
+
+Restart Tomcat:
+  253  stopTomcat
+  254  startTomcat
+  255  tail -f catalina.out
