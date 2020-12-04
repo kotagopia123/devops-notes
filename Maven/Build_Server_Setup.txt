@@ -211,3 +211,44 @@ Restart Tomcat:
   253  stopTomcat
   254  startTomcat
   255  tail -f catalina.out
+
+
+Integrate Maven with Nexus:
+----------------------------
+
+Gather Snapshot and Release URLs:
+
+  SnapShot - http:///nexus/content/repositories/snapshots/
+  Releases - http:///nexus/content/repositories/releases/ 
+
+Nexus Credentials:
+    UN - admin
+    PWD - admin123
+
+Add the Distribution Management Element in pom.xml  
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>deployment</id>
+            <name>my snapshot repository</name>
+            <url>http://192.168.33.10:8080/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>deployment</id>
+            <name>my Release repository</name>
+            <url>http://192.168.33.10:8080/nexus/content/repositories/releases/</url>
+        </repository>
+      </distributionManagement>
+
+Add the credentials of Nexus in settings.xml file of the Maven
+
+    <server>
+          <id>deployment</id>
+          <username>admin</username>
+          <password>admin123</password>
+      </server>
+
+Run the Maven Command:
+
+  - mvn clean deploy
+
