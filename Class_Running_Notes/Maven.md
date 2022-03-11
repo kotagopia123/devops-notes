@@ -1,13 +1,13 @@
-Continuous Integration(CI):
+# Continuous Integration(CI):
 
   Src (Repo) -> Build(Compile) -> Static Analysis -> Unit Tests -> Package -> Artifactory Repo -> Deployment (Servers/Containers) -> Post Deployment Test Cases
 
-CD/CD:
+# CD/CD:
 
   Delivery: CI -> Manual -> Prod -> Monitoring
   Deployment: CI -> Auto -> Prod -> Monitoring
 
-Tools:
+# Tools:
 
 Jenkins ->
 Src Repo (Git/GitHUB) -> Build(Maven) -> Static Analysis (Sonar Qube) -> Unit Tests (Junit) -> Package (Artifact/Docker Image) -> Artifactory Repo (Nexus / DockerHub) -> Deployment (Servers (Tomcat) / Containers (Docker, Docker Compose, K8s)) -> Post Deployment Test Cases (Selenium / Junit) -> Configuration Mgmt Tools (Terraform / Ansible/ Puppet) -> Monitoring (Nagios)
@@ -15,7 +15,7 @@ Src Repo (Git/GitHUB) -> Build(Maven) -> Static Analysis (Sonar Qube) -> Unit Te
 Java Based Application:
 =======================
 
-*.java
+Java File Extension: .java
 
   - Core Java (J2SE - Java 2 Standard Edition)
     - Standard Alone Applications
@@ -32,7 +32,7 @@ Java Based Application:
 
       src code (web content + *.java) -> Build (Compile) -> Unit Tests (Junit) -> Package (.jar/.war/.ear) -> Deploy to Servers (Tomcat/WL/WAS/JBoss) -> Artifactory Repo (Nexus)
 
-IDE:
+IDEs:
 
   - Eclipse
   - Visual Studio Code
@@ -43,6 +43,7 @@ IDE:
 Maven Build tool:
 
   Java Project: (src)
+
     - Inputs
       - Src Code (src/main)
       - Test Cases (src/test)
@@ -82,56 +83,102 @@ Setup Maven:
   - Launch the VM/EC2 Instance
 
     $  sudo yum update -y
+
     $  sudo hostnamectl set-hostname buildserver
+
     $  exit
   
   - Install Java
   
     $  java -version
+
     $  sudo yum search java
+
     $  sudo yum install -y java-1.8.0-openjdk-devel.x86_64
+
     $  java -version
 
+
   - Setup Maven
+
       $  cd /opt/
+
       $  ll -d /opt/
+
       $  sudo chown -R ec2-user:ec2-user /opt/
+
       $  ll -d /opt/
+
       $  ll
+
       $  wget https://dlcdn.apache.org/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz
+
       $  ll
+
       $  tar -xzf apache-maven-3.8.4-bin.tar.gz
+
       $  ll
+
       $  rm -rf apache-maven-3.8.4-bin.tar.gz
+
       $  ll
+
       $  mv apache-maven-3.8.4 maven3
+
       $  ll
+
       $  cd maven3/
+
       $  ll
+
       $  pwd
+
       $  mvn --version
+
       $  cd /opt/maven3/bin/
+
       $  ./mvn --version
+
       $  env
+
       $  ls
+
       $  which ls
+
       $  /usr/bin/ls
+
       $  ls
+
       $  ll /opt/maven3/bin/
+
       $  mvn --version
+
       $  export PATH=/opt/maven3/bin/:$PATH
+
       $  echo $PATH
+
       $  cd
+
       $  pwd
+
       $  mvn --version
+
       $  exit # Relogin
+
       $  mvn --version
+
       $  ll -a
+
       $  vi .bashrc
+
       $  source .bashrc
+
       $  mvn --version
+
       $  exit # Relogin
+
       $  mvn -version
+
 
 
 Maven Archetype:
@@ -139,19 +186,33 @@ Maven Archetype:
 Standard alone App:
 
   $  cd /opt/
+
   $  ll
+
   $  mvn archetype:generate -DgroupId=org.rnstech.com -DartifactId=sample-maven -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
   $  ll
+
   $  cd sample-maven/
+
   $  ll
+
   $  cat pom.xml
+
   $  pwd
+
   $  ll
+
   $  ll src/main/
+
   $  ll src/test/
+
   $  mvn clean package
+
   $  ll
+
   $  ll target/
+  
 
 =================================================================
 
