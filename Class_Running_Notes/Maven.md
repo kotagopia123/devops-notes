@@ -32,7 +32,7 @@ Java File Extension: .java
 
       src code (web content + *.java) -> Build (Compile) -> Unit Tests (Junit) -> Package (.jar/.war/.ear) -> Deploy to Servers (Tomcat/WL/WAS/JBoss) -> Artifactory Repo (Nexus)
 
-IDEs:
+## IDEs:
 
   - Eclipse
   - Visual Studio Code
@@ -40,7 +40,7 @@ IDEs:
   - Net Beans
   - Sublime Text
 
-Maven Build tool:
+## Maven Build tool:
 
   Java Project: (src)
 
@@ -53,12 +53,12 @@ Maven Build tool:
       - Reports of Test Cases (*.xml)
       - Packaged Files (.jar/.war/.ear)
   
-Different Build Tools:
+## Different Build Tools:
   - Maven
   - Ant
   - Gradle
 
-Maven Build Tool:
+## Maven Build Tool:
 
 src code (web content + *.java) 
 
@@ -72,15 +72,15 @@ src code (web content + *.java)
       $ mvn clean package
 
 
-Maven:
+## Maven:
   - Open Source Build Tool
   - Apache
   - Pre-requisite: Java 
   - Distributed Architecture
   - Build File - pom.xml (PROJECT_HOME)
 
-Setup Maven:
-  - Launch the VM/EC2 Instance
+# Setup Maven:
+  ## - Launch the VM/EC2 Instance
 
     $  sudo yum update -y
 
@@ -88,7 +88,7 @@ Setup Maven:
 
     $  exit
   
-  - Install Java
+  ## - Install Java
   
     $  java -version
 
@@ -99,7 +99,7 @@ Setup Maven:
     $  java -version
 
 
-  - Setup Maven
+  ## - Setup Maven
 
       $  cd /opt/
 
@@ -181,9 +181,9 @@ Setup Maven:
 
 
 
-Maven Archetype:
+# Maven Archetype:
 
-Standard alone App:
+## Standard alone App:
 
   $  cd /opt/
 
@@ -241,11 +241,11 @@ Life Cycle: sequence of Phases
 
   $ mvn clean package site
 
-Artifactory Repositories:
+# Artifactory Repositories:
   - Dependencies, Libraries
 
   - Types of Repositories
-    - Central
+    # Central
       - https://repo.maven.apache.org
       - Managed by Maven Community
       - Shared Libraries Ex: Junit, Spring, Hybernate, Log4J...
@@ -259,7 +259,7 @@ Artifactory Repositories:
             </dependency>
 
             
-    - Local
+    # Local
       - System scope
       - ~/.m2/repository
         - Search Sequence:
@@ -289,7 +289,7 @@ Artifactory Repositories:
               </dependency>
 
               
-    - Remote Repo
+    # Remote Repo
       - Client/Org scope
       - Artifacts/Dependencies to Distribute between the developers, between the Env (Dev/Staging/UAT/Prod)
 
