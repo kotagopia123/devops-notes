@@ -1,0 +1,56 @@
+Shell Script Assignment - 2:
+----------------------------
+
+Problem-1: Testing whether a file contain a text or not
+
+#!/bin/bash
+
+if [ $# -ne 2 ]
+then
+	echo "$0 match_text file_name"
+fi
+
+match_text=$1
+file_name=$2
+
+grep -wq $match_text $file_name
+
+if [ $? -eq 0 ]
+then
+	echo "The $match_text exists in a $file_name"
+else
+	echo "The $match_text doesn't exist in a $file_name"
+fi
+		
+Problem-2: Find out frequency of words in a file
+
+	#!/bin/bash
+
+	if [ $# -ne 1 ]
+	then
+		echo "$0 FileName"
+		exit
+	fi
+	
+	filename=$1
+
+	egrep -o "\b[[:alpha:]]+\b" $filename | \
+		awk '{ count[$0]++ } END{ printf("%-14s%s\n","Word","Count") ; \
+ 		for(ind in count) { printf("%-14s%d\n",ind,count[ind]); } }' 
+
+Problem-3: Given the String is a Palindrome(the string and reverse of that string) or not?
+
+		- "$string" == "$(echo $string | rev )"
+
+
+Problem-4: Parsing e-mail address, URLs from text
+
+	Parsing e-mail addresses:
+		- egrep -o '[A-Za-z0-9.]+@[A-Za-z0-9.]+\.[a-zA-Z]{2,4}' file_name
+
+	Parsing URL:
+		- egrep -o "http://[a-zA-Z0-9.]+\.[a-zA-Z]{2,3}" url_email.txt
+
+Problem-5: Removing a sentence in a file containing a word
+
+		- sed 's/ [^.]*word [^.]*\.//g' sentence.txt 
