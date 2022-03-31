@@ -1,0 +1,89 @@
+#!/bin/bash 
+# Author : Rns 
+# Script follows here: 
+echo "Scripting is fun!"
+pwd 
+ls
+
+
+$chmod +x script.sh
+./script.sh
+--------------------------------
+#Shell Types:
+#============
+
+#!/bin/csh
+echo "This script uses csh as the interpreter."
+
+-------------------------------------------------
+
+#!/bin/ksh
+echo "This script uses ksh as the interpreter."
+
+-------------------------------------------------
+
+#!/bin/zsh
+echo "This script uses zsh as the interpreter."
+
+---------------------------------------------------
+
+#!/usr/bin/python
+print "This is a Python script."
+---------------------------------------------------
+
+# Variables Usage
+#====================
+
+#!/bin/bash
+MY_SHELL="bash"
+echo "I like the $MY_SHELL shell."
+---------------------------------------------
+
+#!/bin/bash
+MY_SHELL="bash"
+echo "I like the ${MY_SHELL} shell."
+
+--------------------------------------------------
+
+#!/bin/bash
+MY_SHELL="bash"
+echo "I am ${MY_SHELL}ing on my keyboard."
+
+--------------------------------------------------
+
+#!/bin/bash
+MY_SHELL="bash"
+echo "I am $MY_SHELLing on my keyboard."
+
+--------------------------------------------------
+# Readonly variable
+#==================
+
+#!/bin/bash 
+NAME=$1 
+readonly NAME 
+NAME=“RNS“
+
+--------------------------------------------------
+# Accepting User Input - Read
+#=============================
+
+#!/bin/bash
+read -p "Enter User Name - " USER
+echo "You entered User - " ${USER}
+
+--------------------------------------------------
+# Assign command output to a variable:
+#=====================================
+
+#!/bin/bash
+SERVER_NAME=$(hostname)
+echo "You are running this script on ${SERVER_NAME}."
+
+------------------------------------------------------
+
+#!/bin/bash
+SERVER_NAME=`hostname`
+echo "You are running this script on ${SERVER_NAME}."
+------------------------------------------------------
+
