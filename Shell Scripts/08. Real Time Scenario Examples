@@ -1,0 +1,165 @@
+#!/bin/bash
+
+VERBOSE=false
+HOST="google.com"
+PID="$$"
+PROGRAM_NAME="$0"
+THIS_HOST=$(hostname)
+
+logit () {
+  local LOG_LEVEL=$1
+  shift # <<<1 >>>
+  MSG=$@
+  TIMESTAMP=$(date +"%Y-%m-%d %T")
+  if [ $LOG_LEVEL = 'ERROR' ] || $VERBOSE || [ $LOG_LEVEL = 'INFO' ]
+  then
+    echo "${TIMESTAMP} ${THIS_HOST} ${PROGRAM_NAME}[${PID}]: ${LOG_LEVEL} ${MSG}"
+  fi
+}
+
+logit INFO "Processing data."
+
+fetch-data $HOST || logit ERROR "Could not fetch data from $HOST"
+
+------------------------------------------------------------
+
+Remote Scripts:
+----------------------------------------------------------
+#!/bin/sh
+for i in 192.168.56.75
+do
+  df=`ssh $i "df -Pl"`
+  echo "$df"
+  mount_val=`echo "$df" | awk '/^\/dev/{sub(/%/,"",$5); print $5}' | awk '{sum+=$1} END{printf("%d\n",sum)}'`
+  echo "Current Volume Size - " $mount_val
+  if [ $mount_val -gt 95 ]
+  then
+    echo "Send the Mail"
+  fi
+done
+
+-------------------------------------------------------------------
+
+#!/bin/bash
+
+# Usage: ping-host HOST [HOSTN]...
+# Retuns 0 if the hosts respond to ping or 1 if any of them fail to respond.
+#
+# Supported operating systems: Linux, Mac, BSDs, Solaris.
+
+
+# Help
+if [ -z "$1" ] || [ "$1" = '-h' ] || [ "$1" = '--help' ]
+then
+  echo 'Usage:' $0 'HOST [HOSTN]...' >&2
+  echo 'Retuns 0 if the hosts respond to ping or 1 if any of them fail to respond.' >&2
+  exit
+fi
+
+# Linux / Mac
+PING='ping -c 1 -W 1'
+
+# Hope for the best, prepare for the worst.
+RETURN_CODE=0
+
+# Loop through the hosts provided on the command line.
+for HOST in $@
+do
+  PING_RESULT=$($PING $HOST 2>&1 | grep -i "Name or service not known" | wc -l)
+  [ "$PING_RESULT" -eq 1 ] && {
+    RETURN_CODE=1
+    echo "$HOST down"
+    #mailx -s "Host is down"
+  }
+done
+echo "Return Code - " $RETURN_CODE
+exit $RETURN_CODE
+
+----------------------------------------------------------------------------------------------------------------
+
+#!/bin/bash
+
+# Usage: email-when-up -e EMAIL_ADDRESS -h HOST
+# This script send an email when the server/host/device is reachable over the network.
+
+usage() {
+  echo "Usage: $0 -e EMAIL_ADDRESS -h HOST" >&2
+  exit
+}
+
+while getopts ":e:h:" opt; do
+  case "${opt}" in
+    e)
+      EMAIL_ADDRESS=${OPTARG}
+      ;;
+    h)
+      HOST=${OPTARG}
+      ;;
+    *)
+      usage
+      ;;
+  esac
+done
+shift $((OPTIND-1))
+
+if [ -z "${EMAIL_ADDRESS}" ] || [ -z "${HOST}" ]
+then
+  usage
+fi
+
+# Loop until the server is up.
+SECONDS_TO_SLEEP=60
+while [ true ]
+do
+  /tmp/ping-host.sh $HOST >/dev/null 2>&1
+  if [ "$?" -eq 0 ]
+  then
+    echo "${HOST} is up!  $(date)"
+    echo "${HOST} is up!  $(date)" | mailx -s "${HOST} is up." $EMAIL_ADDRESS
+    exit
+  else
+    echo "$(date) ${HOST} is still down."
+  fi
+  sleep $SECONDS_TO_SLEEP
+done
+
+----------------------------------------------------------------------------------------------------------------
+
+
+#!/bin/bash
+
+# Usage: touch-test
+# Touches and deletes a file on each of the locally mounted file systems. 
+# This can help point out read-only mounts and poorly performing mounts.
+
+# Run as root
+[ "$EUID" -eq 0 ] || {
+  echo 'Please run with sudo or as root.'
+  exit 1
+}
+
+TEST_FILE='touch-test-file'
+
+START=$(date)
+START_SECONDS=$(date +%s)
+
+for MOUNT in $(df -lP | egrep -v '^Filesystem|tmpfs' | awk '{print $NF}')
+do
+  TEST_FILE_ON_MOUNT="${MOUNT}/${TEST_FILE}"
+  echo "$(date) - Touching $TEST_FILE_ON_MOUNT"
+  touch $TEST_FILE_ON_MOUNT
+  rm $TEST_FILE_ON_MOUNT
+  echo "$(date) - Removed $TEST_FILE_ON_MOUNT"
+done
+
+END=$(date)
+END_SECONDS=$(date +%s)
+TOTAL_SECONDS=$(($END_SECONDS - $START_SECONDS))
+
+echo
+echo "Start: $START"
+echo "End:   $END"
+echo "Total: $TOTAL_SECONDS seconds"
+
+
+------------------------------------------------------------
