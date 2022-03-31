@@ -1,0 +1,110 @@
+#!/bin/bash
+
+backup_file () {
+  # This function creates a backup of a file.
+
+  # Make sure the file exists.
+  if [ -f "$1" ] 
+  then
+    # Make the BACKUP_FILE variable local to this function.
+    local BACKUP_FILE="/tmp/$(basename ${1}).$(date +%F).$$"
+    echo "Backing up $1 to ${BACKUP_FILE}"
+
+    # The exit status of the function will be the exit status of the cp command.
+    cp $1 $BACKUP_FILE
+  else
+    # The file does not exist, so return an non-zero exit status.
+    return 1
+  fi
+}
+
+# Call the function
+backup_file /etc/hosts
+
+# Make a decision based on the exit status of the function.
+# Note this is for demonstration purposes.  You could have
+# put this functionality inside of the backup_file function.
+if [ $? -eq "0" ]
+then
+  echo "Backup succeeded!"
+else
+  echo "Backup failed!"
+  # Abort the script and return a non-zero exit status.
+  exit 1
+fi
+
+-----------------------------------------------------------
+
+# Debugging Options
+#!/bin/bash -x
+
+TEST_VAR="test"
+echo "$TEST_VAR"
+---------------------------------------------------
+#!/bin/bash
+
+TEST_VAR="test"
+set -x
+echo $TEST_VAR
+set +x
+hostname
+-----------------------------------------------------
+
+#!/bin/bash -e
+
+FILE_NAME="/not/here"
+ls $FILE_NAME
+echo $FILE_NAME
+-----------------------------------------------------
+#!/bin/bash -ex
+
+FILE_NAME="/not/here"
+ls $FILE_NAME
+echo $FILE_NAME
+------------------------------------------------------
+#!/bin/bash -v
+
+TEST_VAR="test"
+echo "$TEST_VAR"
+-------------------------------------------------------
+#!/bin/bash -vx
+TEST_VAR="test"
+echo "$TEST_VAR"
+-------------------------------------------------------
+
+#!/bin/bash
+
+DEBUG=true
+
+if $DEBUG
+then
+  echo "Debug mode ON."
+else
+  echo "Debug mode OFF."
+fi
+-------------------------------------------------------
+
+#!/bin/bash
+
+VERBOSE=false
+HOST="google.com"
+PID="$$"
+PROGRAM_NAME="$0"
+THIS_HOST=$(hostname)
+
+logit () {
+  local LOG_LEVEL=$1
+  shift # <<<1 >>>
+  MSG=$@
+  TIMESTAMP=$(date +"%Y-%m-%d %T")
+  if [ $LOG_LEVEL = 'ERROR' ] || $VERBOSE || [ $LOG_LEVEL = 'INFO' ]
+  then
+    echo "${TIMESTAMP} ${THIS_HOST} ${PROGRAM_NAME}[${PID}]: ${LOG_LEVEL} ${MSG}"
+  fi
+}
+
+logit INFO "Processing data."
+
+fetch-data $HOST || logit ERROR "Could not fetch data from $HOST"
+
+------------------------------------------------------------
