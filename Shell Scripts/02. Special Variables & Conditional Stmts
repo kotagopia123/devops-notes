@@ -1,0 +1,118 @@
+# Variables Usage
+#====================
+
+#!/bin/bash
+MY_SHELL="bash"
+echo "I like the $MY_SHELL shell."
+---------------------------------------------
+
+#!/bin/bash
+MY_SHELL="bash"
+echo "I like the ${MY_SHELL} shell."
+
+--------------------------------------------------
+
+#!/bin/bash
+MY_SHELL="bash"
+echo "I am ${MY_SHELL}ing on my keyboard."
+
+--------------------------------------------------
+
+#!/bin/bash
+MY_SHELL="bash"
+echo "I am $MY_SHELLing on my keyboard."
+
+--------------------------------------------------
+# Readonly variable
+#==================
+
+#!/bin/bash 
+NAME=$1 
+readonly NAME 
+NAME=“RNS“
+
+--------------------------------------------------
+# Accepting User Input - Read
+#=============================
+
+#!/bin/bash
+read -p "Enter User Name - " USER
+echo "You entered User - " ${USER}
+
+--------------------------------------------------
+# Assign command output to a variable:
+#=====================================
+
+#!/bin/bash
+SERVER_NAME=$(hostname)
+echo "You are running this script on ${SERVER_NAME}."
+
+------------------------------------------------------
+
+#!/bin/bash
+SERVER_NAME=`hostname`
+echo "You are running this script on ${SERVER_NAME}."
+------------------------------------------------------
+#Special Variables:
+#===================
+
+#!/bin/sh
+
+#Here is a sample run for the above script −
+#./cmd_line_args.sh Rise N Shine
+
+echo "File Name: $0"
+echo "First Parameter : $1"
+echo "Second Parameter : $2"
+echo "Third Parameter : $3"
+echo "Quoted Values: $@"
+echo "Quoted Values: $*"
+echo "Total Number of Parameters : $#"
+echo "The exit status of the last command  : $?"
+echo "The process number of the current shell : $$"
+echo "The process number of the last background : $!"
+
+---------------------------------------------------------
+# Decision Making
+#================
+
+#!/bin/bash
+
+MY_SHELL="bash"
+
+if [ "$MY_SHELL" = "bash" ]
+then
+  echo "You seem to like the bash shell."
+  echo "You seem to like the bash shell."
+fi
+-----------------------------------------------------
+#!/bin/bash
+
+MY_SHELL="csh"
+
+if [ "$MY_SHELL" = "bash" ]
+then
+  echo "You seem to like the bash shell."
+else
+  echo "You don't seem to like the bash shell."
+fi
+------------------------------------------------------
+
+#!/bin/bash
+
+MY_SHELL="csh"
+
+if [ "$MY_SHELL" = "bash" ]
+then
+  echo "You seem to like the bash shell."
+elif [ "$MY_SHELL" = "csh" ]
+then
+  echo "You seem to like the csh shell."
+elif [ "$MY_SHELL" = "zsh" ]
+then
+  echo "You seem to like the zshell."
+else
+  echo "You don't seem to like the zshell."
+fi
+
+--------------------------------------------------------
