@@ -62,7 +62,7 @@
 	- Build Step:
 		-  Invoke top level Maven Targets
 			Maven Version - Tool Maven3
-			Goal - clean package/deploy
+			Goal - clean package/deploy -DskipTests
 
 	- Post Build Action:
 		- Publish the Artifacts
